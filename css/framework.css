@@ -1,0 +1,454 @@
+/* RESET *************************************************************
+**********************************************************************/
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+html, body, 
+p,
+h1, h2, h3,
+h4, h5, h6  {
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3,
+h4, h5, h6 { line-height: 1; }
+
+p { line-height: 1.3; }
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
+a:hover { text-decoration: underline; }
+
+/* FONTS *************************************************************
+**********************************************************************/
+@font-face {
+    font-family: 'poppins';
+    src: url('../fonts/poppins-light-webfont.woff2') format('woff2'),
+         url('../fonts/poppins-light-webfont.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'poppins';
+    src: url('../fonts/poppins-regular-webfont.woff2') format('woff2'),
+         url('../fonts/poppins-regular-webfont.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'poppins';
+    src: url('../fonts/poppins-semibold-webfont.woff2') format('woff2'),
+         url('../fonts/poppins-semibold-webfont.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'roboto_mono';
+    src: url('../fonts/robotomono-regular-webfont.woff2') format('woff2'),
+         url('../fonts/robotomono-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'roboto_mono';
+    src: url('../fonts/robotomono-italic-webfont.woff2') format('woff2'),
+         url('../fonts/robotomono-italic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+}
+
+/* CUSTOM PROPERTIES *************************************************
+**********************************************************************/
+:root {
+    /* Z-Index Scale
+    -------------------------------------------------- */
+    --zIndex-1: 100;
+    --zIndex-2: 200;
+    --zIndex-3: 300;
+    --zIndex-4: 400;
+    --zIndex-5: 500;
+    --zIndex-6: 600;
+    --zIndex-7: 700;
+    --zIndex-8: 800;
+    --zIndex-9: 900; /* I highly advise never setting anything beyond this level */
+    --zIndex-10: 1000;
+
+    --zIndex-brand: calc(var(--zIndex-5) + 50);
+    --zIndex-hamburger: calc(var(--zIndex-5) + 50);
+    --zIndex-bannerNavList: calc(var(--zIndex-5) + 25);
+
+    /* Breakpoints (For reference. Can't be used in media query)
+    -------------------------------------------------- */
+    --breakpoint-phone-portrait: 575.98px; /* Portrait phone */
+    --breakpoint-phone-landscape: 767.98px;
+    --breakpoint-tablet: 991.98px;
+    --breakpoint-laptop: 1199.98px;
+
+    /* Color
+    -------------------------------------------------- */
+    --color-white: #FFFFFF;
+    --color-black: #191919;
+    --color-green: #10E6B5;
+
+    --color-text: var(--color-white);
+    --color-rule: var(--color-white);
+    --color-link-hover: var(--color-white);
+    --color-link-selected: var(--color-white);
+    --color-link: var(--color-green);
+    --color-title: var(--color-green);
+    --color-hamburger: var(--color-green);
+    --color-background: var(--color-black);
+
+    /* Fonts
+    -------------------------------------------------- */
+    /* Font Family */
+    --fontFamily-robotoMono: 'roboto_mono', sans-serif;
+    --fontFamily-poppins: 'poppins', sans-serif;
+
+    /* Font Size */
+    --fontSize-smaller: calc(var(--fontSize-base) * 0.9);
+    --fontSize-base: 1em;
+    --fontSize-large: calc(var(--fontSize-base) * 1.5);
+    --fontSize-larger: calc(var(--fontSize-base) * 2.25);
+    --fontSize-largest: calc(var(--fontSize-base) * 8);
+
+    /* --fontSize-wrapperTitle: calc(var(--fontSize-base) * 2.25);
+    --fontSize-officerText: calc(var(--fontSize-base) * 0.9);
+    --fontSize-h2: calc(var(--fontSize-base) * 1.5);
+    --fontSize-jumbo: calc(var(--fontSize-base) * 8); */
+
+    /* Font Style */
+    --fontStyle-normal: normal;
+    --fontStyle-italic: italic;
+
+    /* Font Weight */
+    --fontWeight-light: 300;
+    --fontWeight-base: 400;
+    --fontWeight-semibold: 500;
+
+    /* Spacing
+    -------------------------------------------------- */
+    --spacer: 1rem;
+    --spacer-text: 1em;
+
+    --spacing-smaller: calc(var(--spacing-small) * 0.5);
+    --spacing-small: calc(var(--spacing-base) * 0.5);
+    --spacing-base: calc(var(--spacer) * 3);
+
+    --spacing-gridGap: calc(var(--spacer) * 1.5);
+
+    /* Border
+    -------------------------------------------------- */
+    --border: 1px solid var(--color-rule);
+}
+
+@media (max-width: 575.98px) {
+    :root {
+        /* Fonts
+        -------------------------------------------------- */
+        /* Font Size */
+        --fontSize-largest: calc(var(--fontSize-base) * 6);
+
+        /* Spacing
+        -------------------------------------------------- */
+        --spacing-base: calc(var(--spacer) * 1.5);
+    }
+}
+
+/* STYLES ************************************************************
+**********************************************************************/
+
+/* Flex
+-------------------------------------------------- */
+.flex {
+    width: 100%;
+    display: flex;
+}
+
+.flex-body {
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+.flex-body main { flex: 1; }
+
+/* Grid
+-------------------------------------------------- */
+.grid {
+    width: 100%;
+    display: grid;
+    grid-column-gap: var(--spacing-gridGap);
+    grid-row-gap: var(--spacing-gridGap);
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+}
+
+.grid-twoCol { grid-template-columns: repeat(2, 1fr); }
+.grid-threeCol { grid-template-columns: repeat(3, 1fr); }
+
+@media (max-width: 767.98px) {
+    .grid-twoCol,
+    .grid-threeCol {
+        grid-template-columns: 1fr;
+        grid-column-gap: 0;
+    }
+}
+
+/* Wrapper
+-------------------------------------------------- */
+.wrapper {
+    padding-bottom: var(--spacing-base);
+    border-bottom: var(--border);
+}
+
+/* Use in conjunction with .wrapper */
+.wrapper-fluid { width: 100%; }
+
+/* Link
+-------------------------------------------------- */
+.link.selected { color: var(--color-link-selected); }
+.link:hover {
+    text-decoration: none;
+    color: var(--color-link-hover);
+}
+
+/* Title
+-------------------------------------------------- */
+.title { color: var(--color-title) !important; }
+.title-page {
+    padding-bottom: var(--spacing-small);
+    font-family: var(--fontFamily-poppins);
+    font-weight: var(--fontWeight-base);
+    border-bottom: var(--border);
+    text-transform: uppercase;
+}
+
+.subtitle {
+    font-weight: var(--fontWeight-base);
+    margin-top: var(--spacing-smaller);
+    
+    text-transform: capitalize;
+}
+
+.header {
+    margin: var(--spacing-small) 0 calc(0.5 * var(--spacing-small));
+    font-family: var(--fontFamily-poppins);
+    font-weight: var(--fontWeight-light);
+    font-size: var(--fontSize-larger);
+    text-transform: uppercase;
+}
+
+/* Brand
+-------------------------------------------------- */
+.brand {
+    color: inherit;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-family: var(--fontFamily-poppins);
+    font-size: var(--fontSize-largest);
+    font-weight: var(--fontWeight-light);
+}
+
+.brand:hover { text-decoration: none; }
+.brand span { font-weight: var(--fontWeight-semibold); }
+
+/* Nav lists
+-------------------------------------------------- */
+.navList {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    margin-left: var(--spacing-base);
+    display: inline-block;
+    text-transform: capitalize;
+}
+
+@media (max-width: 575.98px) {
+    /* TODO: Style for slide out menu */
+}
+
+/* Banner
+-------------------------------------------------- */
+[role="banner"] {
+    width: 100%;
+    grid-area: banner;
+    margin-bottom: var(--spacing-base);
+}
+
+[role="banner"].flex {
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* 1. Aligns bottom of brand with bottom of navListItem */
+/* 2. Required to set z-index */
+/* 3. Required on mobile to appear above nav list */
+[role="banner"] .brand {
+    margin-top: -.2em; /* 1. */
+    font-size: var(--fontSize-large);
+    position: relative; /* 2. */
+    z-index: var(--zIndex-brand); /* 3. */
+}
+
+@media (max-width: 575.98px) {
+    /* Center aligns brand with hamburger  */
+    [role="banner"] .brand { margin-top: 0.2em; }
+
+    /* 1. Align box to top of window */
+    /* 2. Align items to hamburger button */
+    /* 3. Required for padding to work as intended */
+    /* 4. Required for banner nav list to appear above everything else on page */
+    [role="banner"] .navList {
+        width: 100%;
+        height: 100%;
+        margin: 0; /* 1. */
+        padding-right: var(--spacing-base); /* 2. */
+        box-sizing: border-box; /* 3. */
+        position: fixed;
+        left: 100%; top: 0;
+        z-index: var(--zIndex-bannerNavList); /* 4. */
+        background-color: var(--color-background);
+        transition: left 0.4s ease;
+    }
+
+    /* NOTE: Conditional flex rules. They should not be in the flex css section */
+    [role="banner"] .navList.flex {
+        align-content: center;
+        flex-wrap: wrap;
+    }
+
+    /* 1. Reset margin to allow for proper padding */
+    /* 2. Required to set left/top property */
+    [role="banner"] .navList li {
+        width: 100%;
+        margin: 0; /* 1. */
+        margin-bottom: var(--spacing-base);
+        display: block;
+        text-align: right;
+        font-size: var(--fontSize-h2);
+        position: relative; /* 2. */
+        top: 1em;
+        opacity: 0;
+        transition:
+            top 0.3s ease 0.3s,
+            opacity 0.4s ease 0.3s;
+    }
+}
+
+/* Hamburger 
+** Modified from: https://codepen.io/oxla/pen/zgvqmM
+-------------------------------------------------- */
+.hamburger { display: none; }
+
+@media (max-width: 575.98px) {
+    /* 1. Required on mobile to appear above nav list */
+    .hamburger {
+        width: 30px;
+        height: 20px;
+        margin: 0;
+        padding: 0;
+        display: block;
+        position: relative;
+        background: none;
+        border: none;
+        z-index: var(--zIndex-hamburger); /* 1. */
+    }
+    
+    .hamburger .cross.two,
+    .hamburger .cross.one,
+    .hamburger .line.two,
+    .hamburger .line.one {
+        position: absolute;
+        width: 100%;
+        background-color: var(--color-hamburger);
+        height: 2px;
+        opacity: 1;
+        transition: 0.2s ease-in-out;
+    }
+    
+    .hamburger .line.one {
+        left: 0;
+        top: 0;
+    }
+    
+    .hamburger .line.two {
+        right: 0;
+        bottom: 0;
+    }
+    
+    .hamburger .cross.two,
+    .hamburger .cross.one {
+        background: none;
+        top: 50%;
+        width: 100%;
+        margin-top: -1px;
+        height: 2px;
+    }
+    
+    .hamburger .cross.one:before,
+    .hamburger .cross.two:before,
+    .hamburger .cross.one:after,
+    .hamburger .cross.two:after {
+        content: "";
+        height: 100%;
+        float: left;
+        background-color: var(--color-hamburger);
+        width: 50%;
+        left: 0;
+        transition: 0.2s ease-in-out;
+    }
+    
+    .hamburger .cross.one:before,
+    .hamburger .cross.two:before {
+        right: 0;
+        left: unset;
+    }
+    
+    .hamburger:hover {
+        cursor: pointer;
+    }
+    
+    .hamburger:hover .line.two,
+    .hamburger:hover .line.one {
+        width: 50%;
+    }
+    
+    .hamburger[aria-expanded="true"] .line.one,
+    .hamburger[aria-expanded="true"] .line.two {
+        opacity: 0;
+    }
+    
+    .hamburger[aria-expanded="true"] .cross.two {
+        -webkit-transform: rotate(-45deg);
+                transform: rotate(-45deg);
+    }
+    
+    .hamburger[aria-expanded="true"] .cross.one {
+        -webkit-transform: rotate(45deg);
+                transform: rotate(45deg);
+    }
+    
+    .hamburger[aria-expanded="true"]:hover .cross.two:before,
+    .hamburger[aria-expanded="true"]:hover .cross.one:before {
+        -webkit-transform: translate(-30%, 0);
+                transform: translate(-30%, 0);
+    }
+    
+    .hamburger[aria-expanded="true"]:hover .cross.two:after,
+    .hamburger[aria-expanded="true"]:hover .cross.one:after {
+        -webkit-transform: translate(30%, 0);
+                transform: translate(30%, 0);
+    }
+}

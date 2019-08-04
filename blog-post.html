@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>RPISEC</title>
+    <!--<link rel="stylesheet" href="./css/reset.css" />
+    <link rel="stylesheet" href="./css/fonts.css" />
+    <link rel="stylesheet" href="./css/main.css" />-->
+    <link rel="stylesheet" href="./css/framework.css" />
+    <link rel="stylesheet" href="./css/main.css" />
+</head>
+<body class="flex flex-body">
+    <header>
+        <nav role="banner" class="flex">
+            <a href="./index.html" class="brand"><span>Rpi</span>sec</a>
+            <button aria-haspopup="true" aria-controls="bannerNavList" aria-expanded="false" class="js-navToggle hamburger">
+                <div class="line one"></div>
+                <div class="line two"></div>
+                <div class="cross one"></div>
+                <div class="cross two"></div>
+            </button>
+            <ul class="navList flex" id="bannerNavList">
+                <li class="navListItem"><a href="./index.html" class="link">About</a></li>
+                <li class="navListItem"><a href="./blog.html" class="link">Blog</a></li>
+                <li class="navListItem"><a href="./contact.html" class="link">Contact</a></li>
+            </ul>
+        </nav>
+        <h2 class="title title-page">DEFCON CTF Quals 2019 Tania</h2>
+    </header>
+    <main>
+        <div class="wrapper wrapper-fluid grid grid-twoCol">
+            <section id="post">
+                <article>
+                    <h5>May 13, 2019 / Avi Weinstock, Lense</h5>
+                    <h3 class="title subtitle">Reversing</h3>
+                    <div>
+                        <p>For Tania, the handout consists of a single file: an x86_64 ELF binary.</p>
+                        <p>Looking at the references to the strings, there’s a menu with “sign” and “execute” options.</p>
+                        <p>Ghidra decompilation of menu function</p>
+                        <p>Signing only allows signing 2 particular strings, “the rules are the rules, no complaints” and “rayammer can change the rules” (although since strcmp is used, and then the length from the get_input helper is passed down the call stack, it’s possible to add null bytes at the end, e.g. to sign rayammer can change the rules\0\0, although this doesn’t end up being useful for the attack).</p>
+                        <p>Ghidra decompilation of signing code</p>
+                        <p>Signing keeps track of how many signatures there are, and uses the names r and s for the printout, giving a good hint that the signing algorithm is DSA. It’s folklore that DSA allows private key recovery with a single duplicated nonce, so the fact that we’re limited in how many signatures we’re given adds to the hint, in addition to the choice of output names.</p>
+                        <p>From the exec menu option, we see that if we’re able to provide a valid signature for a string, it gets passed to system, so forging signatures (probably by recovering the private key) is our goal.</p>
+                        <p>Going through the implementation of signature generation and verification and naming the variables after the wikipedia pseudocode confirms that the implementation is mostly vanilla DSA.</p>
+                        <p>The nonce generation is emphatically not stock DSA though. Translating the GMP to Python, so that the expression structure is visible, it’s something like:</p>
+                        <p><pre>
+                        def advance_nonce_state((z1, z2)):
+                            k = (gg*z1 + hh * z2 + ii) % jj
+                            z1 = (aa * k + bb) % cc
+                            z2 = (dd * k + ee) % ff
+            
+                            return k, (z1, z2)
+                        </pre></p>
+                        <p>This advances a PRNG state with an linear congruential equation (which are known to be weak PRNGs), but since we only get 2 samples per connection before the PRNG state is reset to fresh values from /dev/urandom, this doesn’t immediately lead to an exploit.</p>
+                        <p>Going back to the strings, a bunch of long integer constants show up in the binary. Naming each of the fields by the base2 logarithms of their values, it becomes clear that the PRNG truncates the nonce to 100 bits, while for security, it should be uniformly random up to q’s size (160 bits).</p>
+                    </div>
+                </article>
+            </section>
+        </div>
+    </main>
+    <footer>
+        <p>
+            <a href="https://binghamton.design">BDC</a> &times; RPISEC <span class="copyright">&copy; <span class="js-currentYear"></span></span>
+        </p>
+    </footer>
+    <script src="./js/util.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+</html>

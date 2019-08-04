@@ -1,0 +1,90 @@
+body {
+    font-size: calc(12px + 4 * ((100vw - 320px) / 880)); /* Sets the default font size for custom properties */
+    font-family: var(--fontFamily-robotoMono);
+    font-weight: var(--fontWeight-base);
+    background-color: var(--color-background);
+    color: var(--color-text);
+}
+
+a { color: var(--color-link); }
+p { margin: var(--spacing-smaller) 0; }
+
+header,
+main,
+footer {
+    margin-top: var(--spacing-base);
+    padding: 0 var(--spacing-base);
+    transition: 
+        margin 0.5s ease,
+        padding 0.5s ease;
+}
+
+/* Header
+-------------------------------------------------- */
+header .grid {
+    grid-template-areas:
+        "banner"
+        "brand";
+}
+
+header h1.brand { text-align: center; }
+
+/* Footer
+-------------------------------------------------- */
+footer { padding-bottom: var(--spacing-base); } /* NOTE: Margin-bottom fails here. Idk why */
+
+footer a { color: inherit; }
+
+/* Officer
+-------------------------------------------------- */
+.officer { text-transform: uppercase; }
+.officer .title { font-weight: normal; }
+.officer p { margin: 0; }
+
+@media (max-width: 767.98px) {
+    .officers.grid-threeCol { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Banner
+-------------------------------------------------- */
+@media (max-width: 575.98px) {
+    [role="banner"] .navList li {
+        transition:
+            top 0.3s ease 0.3s,
+            opacity 0.4s ease 0.3s;
+    }
+
+    [role="banner"] .navList li:nth-child(2) {
+        transition: 
+            top 0.3s ease 0.4s,
+            opacity 0.4s ease 0.4s;
+    }
+
+    [role="banner"] .navList li:nth-child(3) {
+        transition: 
+            top 0.3s ease 0.5s,
+            opacity 0.4s ease 0.5s;
+    }
+
+    [aria-controls="bannerNavList"][aria-expanded="true"] ~ .navList {
+        left: 0;
+    }
+
+    [aria-controls="bannerNavList"][aria-expanded="true"] ~ .navList li {
+        opacity: 1;
+        top: 0;
+    }
+}
+
+/* Post Feed - Only on Blog page
+-------------------------------------------------- */
+#postFeed article { margin-top: var(--spacing-base); }
+#postFeed article:nth-child(1) { margin-top: 0; }
+
+#postFeed .subtitle {
+    margin-bottom: var(--spacing-smaller);
+}
+
+/* Post - Only on Blog-Post page
+-------------------------------------------------- */
+#post { margin-top: calc(var(--spacing-base) / 2 * -1); }
