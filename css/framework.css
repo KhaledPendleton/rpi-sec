@@ -122,11 +122,6 @@ a:hover { text-decoration: underline; }
     --fontSize-larger: calc(var(--fontSize-base) * 2.25);
     --fontSize-largest: calc(var(--fontSize-base) * 8);
 
-    /* --fontSize-wrapperTitle: calc(var(--fontSize-base) * 2.25);
-    --fontSize-officerText: calc(var(--fontSize-base) * 0.9);
-    --fontSize-h2: calc(var(--fontSize-base) * 1.5);
-    --fontSize-jumbo: calc(var(--fontSize-base) * 8); */
-
     /* Font Style */
     --fontStyle-normal: normal;
     --fontStyle-italic: italic;
