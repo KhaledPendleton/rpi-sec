@@ -302,6 +302,8 @@ li {
     z-index: var(--zIndex-brand); /* 3. */
 }
 
+[role="banner"] .navList { justify-content: end; }
+
 @media (max-width: 575.98px) {
     /* Center aligns brand with hamburger  */
     [role="banner"] .brand { margin-top: 0.2em; }
