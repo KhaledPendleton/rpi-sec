@@ -17,7 +17,7 @@ h4, h5, h6  {
 h1, h2, h3,
 h4, h5, h6 { line-height: 1; }
 
-p { line-height: 1.3; }
+p { line-height: 1.4; }
 
 a {
     text-decoration: none;
@@ -136,6 +136,7 @@ a:hover { text-decoration: underline; }
     --spacer: 1rem;
     --spacer-text: 1em;
 
+    --spacing-smallest: calc(var(--spacing-smaller) * 0.5);
     --spacing-smaller: calc(var(--spacing-small) * 0.5);
     --spacing-small: calc(var(--spacing-base) * 0.5);
     --spacing-base: calc(var(--spacer) * 3);
@@ -202,7 +203,7 @@ a:hover { text-decoration: underline; }
 /* Wrapper
 -------------------------------------------------- */
 .wrapper {
-    padding-bottom: var(--spacing-base);
+    padding: var(--spacing-base) 0;
     border-bottom: var(--border);
 }
 
@@ -241,7 +242,7 @@ a:hover { text-decoration: underline; }
 }
 
 .header {
-    margin: var(--spacing-small) 0 calc(0.5 * var(--spacing-small));
+    margin: var(--spacing-smallest) 0 calc(0.5 * var(--spacing-small));
     font-family: var(--fontFamily-poppins);
     font-weight: var(--fontWeight-light);
     font-size: var(--fontSize-larger);
