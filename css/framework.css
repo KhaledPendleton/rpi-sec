@@ -220,7 +220,11 @@ a:hover { text-decoration: underline; }
 
 /* Title
 -------------------------------------------------- */
-.title { color: var(--color-title) !important; }
+.title {
+    color: var(--color-title) !important; 
+    font-family: var(--fontFamily-poppins);
+}
+
 .title-page {
     padding-bottom: var(--spacing-small);
     font-family: var(--fontFamily-poppins);
