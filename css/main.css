@@ -36,8 +36,6 @@ footer {
     padding-bottom: var(--spacing-smaller); /* NOTE: Margin-bottom fails here. Idk why */
 }
 
-footer a { color: inherit; }
-
 /* Officer
 -------------------------------------------------- */
 .officer { text-transform: uppercase; }
