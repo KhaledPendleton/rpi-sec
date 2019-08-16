@@ -12,7 +12,7 @@ p { margin: var(--spacing-smaller) 0; }
 header,
 main,
 footer {
-    margin-top: var(--spacing-base);
+    margin-top: var(--spacing-small);
     padding: 0 var(--spacing-base);
     transition: 
         margin 0.5s ease,
@@ -31,7 +31,10 @@ header h1.brand { text-align: center; }
 
 /* Footer
 -------------------------------------------------- */
-footer { padding-bottom: var(--spacing-base); } /* NOTE: Margin-bottom fails here. Idk why */
+footer { 
+    margin-top: var(--spacing-smaller);
+    padding-bottom: var(--spacing-smaller); /* NOTE: Margin-bottom fails here. Idk why */
+}
 
 footer a { color: inherit; }
 

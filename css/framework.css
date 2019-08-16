@@ -211,6 +211,7 @@ a:hover { text-decoration: underline; }
 
 /* Link
 -------------------------------------------------- */
+.link { color: var(--color-link); }
 .link.selected { color: var(--color-link-selected); }
 .link:hover {
     text-decoration: none;
@@ -231,8 +232,8 @@ a:hover { text-decoration: underline; }
 .subtitle {
     font-weight: var(--fontWeight-base);
     margin-top: var(--spacing-smaller);
-    
-    text-transform: capitalize;
+    padding-bottom: var(--spacing-smaller) 0;
+    font-family: var(--fontFamily-poppins);
 }
 
 .header {
